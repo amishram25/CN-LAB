@@ -1,0 +1,41 @@
+Router Configuration After creating the topology, we’ll click router for configuration.
+
+Router à CLI:
+
+Router 1 >
+en
+
+Router #
+config t
+
+Router (config) #
+interface Fa0/0
+ip address 192.168.10.1 255.255.255.0
+no shut
+
+
+ip dhcp pool xyz
+
+Router (dhcp-config) 3#
+
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+dns-server 1.2.3.
+lease 0 3
+exit
+
+
+Client Configuration
+
+Click each PC:
+
+Desktop-> IP Configuration-> click:
+
+DHCP
+
+It should auto-receive:
+
+· IP (like 192.168.10.x)
+· Mask
+· Gateway
+· DNS
