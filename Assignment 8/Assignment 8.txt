@@ -1,0 +1,78 @@
+Router 0 Configuration After creating the topology, we’ll click router for configuration.
+
+Router 0- CLI:
+
+en
+config t
+
+interface Se2/0
+ip address 10.0.0.1 255.255.255.252
+no shut
+
+interface Fa0/0
+ip address 192.168.1.1 255.255.255.0
+no shut
+
+router ospf 1
+router bgp 100
+neighbor 10.0.0.2 remote-as 200
+network 192.168.1.0 mask 255.255.255.0
+end
+
+
+Router 1 Configuration
+
+Router 1- CLI:
+
+en
+config t
+
+interface Se2/0
+ip address 10.0.0.2 255.255.255.252
+no shut
+
+interface Se3/0
+ip address 10.0.0.5 255.255.255.252
+no shut
+
+router bgp 200
+neighbor 10.0.0.1 remote-as 100
+neighbor 10.0.0.6 remote-as 300
+network 10.0.0.0 mask 255.255.255.252
+end
+
+
+Router 2 Configuration
+
+Router 2- CLI:
+
+en
+config t
+
+interface Se3/0
+ip address 10.0.0.6 255.255.255.252
+no shut
+
+interface Fa0/0
+ip address 192.168.3.1 255.255.255.0
+no shut
+
+router bgp 300
+neighbor 10.0.0.5 remote-as 200
+network 192.168.3.0 mask 255.255.255.0
+end
+
+
+Clients Configuration
+PC -> Desktop -> ip configuration
+
+PC0:
+
+IP: 192.168.1.2
+Mask: 255.255.255.0
+
+
+PC1:
+
+IP: 192.168.3.2
+Mask: 255.255.255.0
